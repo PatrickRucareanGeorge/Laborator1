@@ -1,6 +1,8 @@
 package lab3_2;
 
-public class Student2 implements Comparable<Student2> {
+import java.util.Objects;
+
+public class Student2 {
     private String numarMatricol;
     private String prenume;
     private String nume;
@@ -13,18 +15,27 @@ public class Student2 implements Comparable<Student2> {
         this.formatieDeStudiu = formatieDeStudiu;
     }
 
-    public String getNume() { return nume; }
+    public String getNume() {
+        return nume;
+    }
 
     @Override
     public String toString() {
         return numarMatricol + "," + prenume + "," + nume + "," + formatieDeStudiu;
     }
 
-    // Sorting logic: compares by last name (nume)
     @Override
-    public int compareTo(Student2 other) {
-        return this.nume.compareTo(other.nume);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student2 student = (Student2) o;
+        return Objects.equals(nume, student.nume) &&
+                Objects.equals(prenume, student.prenume) &&
+                Objects.equals(formatieDeStudiu, student.formatieDeStudiu);
     }
 
-    // Keep your existing equals and hashCode methods here...
+    @Override
+    public int hashCode() {
+        return Objects.hash(nume, prenume, formatieDeStudiu);
+    }
 }

@@ -1,3 +1,7 @@
+package Lab3_1;
+
+import lab3_2.Student2;
+
 import java.util.HashSet;
 import java.util.Set;
 

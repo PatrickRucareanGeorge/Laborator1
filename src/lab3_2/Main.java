@@ -7,34 +7,30 @@ public class Main {
     public static void main(String[] args) {
         List<Student2> listaStudenti = new ArrayList<>();
 
-        // 1. Read from studenti_in.txt
         try (BufferedReader br = new BufferedReader(new FileReader("studenti_in.txt"))) {
             String linie;
             while ((linie = br.readLine()) != null) {
                 String[] date = linie.split(",");
                 if (date.length == 4) {
-                    listaStudenti.add(new Student2(date[0], date[1], date[2], date[3]));
+                    listaStudenti.add(new Student2(date[0].trim(), date[1].trim(), date[2].trim(), date[3].trim()));
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+            System.err.println(e.getMessage());
         }
 
-        // 2. Display the students
-        System.out.println("Students read from file:");
-        listaStudenti.forEach(System.out::println);
+        for (Student2 s : listaStudenti) {
+            System.out.println(s);
+        }
 
-        // 3. Sort students by last name (nume)
-        Collections.sort(listaStudenti);
+        listaStudenti.sort(Comparator.comparing(Student2::getNume));
 
-        // 4. Save to studenti_out.txt
         try (PrintWriter pw = new PrintWriter(new FileWriter("studenti_out.txt"))) {
             for (Student2 s : listaStudenti) {
                 pw.println(s.toString());
             }
-            System.out.println("\nSorted list saved to studenti_out.txt");
         } catch (IOException e) {
-            System.err.println("Error writing file: " + e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }

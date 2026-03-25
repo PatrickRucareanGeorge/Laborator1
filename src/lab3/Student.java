@@ -1,3 +1,5 @@
+package lab3;
+
 import java.util.Objects;
 
 public class Student {
@@ -15,7 +17,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [" +
+        return "lab3.Student [" +
                 "Matricol: " + numarMatricol +
                 ", Nume: " + nume +
                 ", Prenume: " + prenume +
@@ -26,7 +28,7 @@ public class Student {
     public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Student2 student2 = (Student2) o;
+        Student student2 = (Student) o;
         return Objects.equals(nume, student2.nume) &&
                 Objects.equals(prenume, student2.prenume) &&
                 Objects.equals(formatieDeStudiu, student2.formatieDeStudiu);
